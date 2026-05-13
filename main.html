@@ -81,7 +81,16 @@
                     </div>
                 </div>
 
-                
+                <div id="rsvp" class="flex flex-col text-center lg:text-left">
+                    <span class="text-ap-blue font-bold tracking-[0.3em] uppercase text-[12px] block mb-2">Konfirmasi Kehadiran</span>
+                    <p class="text-gray-400 text-[11px] italic mb-8">Mohon kiranya Bapak/Ibu/Saudara/i dapat mengonfirmasi kehadiran.</p>
+                    <form id="formRSVP" class="space-y-4 max-w-sm mx-auto lg:mx-0 w-full">
+                        
+                        <div class="relative w-full">
+                            <input type="text" name="nama" placeholder="Nama lengkap" required 
+                                class="w-full px-8 py-4 bg-white border border-gray-200 rounded-full text-[12px] font-semibold tracking-wider text-gray-800 placeholder:text-gray-400 focus:ring-2 focus:ring-[#0071E3] outline-none transition-all shadow-sm"
+                                style="background-color: white !important; border-radius: 9999px !important;">
+                        </div>
                         
                         <div class="relative group w-full">
                             <select name="status" required 
@@ -123,6 +132,59 @@
         </footer>
     </main>
 
-    
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) { reveals[i].classList.add("active"); }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby-9e0gUcjCjO1K8A2WG9Sp4Pc6tPnKvbLG-OxuI0oGQlvlBsB06LA2pQ8uZpUu4Hk7/exec';
+        const form = document.getElementById('formRSVP');
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const btn = form.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerText = "MENGIRIM...";
+            btn.disabled = true;
+
+            const data = {};
+            new FormData(form).forEach((value, key) => data[key] = value);
+
+            fetch(scriptURL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                cache: 'no-cache', 
+                headers: { 'Content-Type': 'application/json' }, 
+                body: JSON.stringify(data) 
+            })
+            .then(() => {
+                Swal.fire({
+                    title: 'Terimakasih',
+                    text: 'Tuhan Yesus Memberkati ❤️',
+                    icon: 'success',
+                    confirmButtonColor: '#0071E3',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        popup: 'rounded-[25px]', 
+                    }
+                });
+                form.reset();
+                btn.innerText = originalText;
+                btn.disabled = false;
+            })
+            .catch(() => {
+                Swal.fire('Waduh!', 'Ada masalah koneksi bre!', 'error');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
