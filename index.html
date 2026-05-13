@@ -146,8 +146,6 @@
                 </p>
         </div>
 
-       
-
             <a href="main.html" 
                class="px-14 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-ap-body font-semibold tracking-widest transition-all duration-500 hover:bg-ap-blue hover:border-ap-blue hover:shadow-[0_0_20px_rgba(0,113,227,0.4)] active:scale-95">
                 SELENGKAPNYA
@@ -155,75 +153,5 @@
         </div>
     </div>
 </section>
-
-<script>
-    // Update target tanggal ke 14 Mei 2026 Pukul 08:00
-    const targetDateStr = "May 19, 2026";
-    const targetDate = new Date(targetDateStr).getTime();
-
-    function updateEventText() {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-        const dateObj = new Date(targetDateStr);
-        const formattedDate = dateObj.toLocaleDateString('id-ID', options);
-        document.getElementById("event-time-info").innerText = formattedDate + " WIB";
-    }
-
-    updateEventText();
-
-    const countdown = setInterval(function() {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
-
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerText = days.toString().padStart(2, '0');
-        document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-        document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-        document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
-
-        if (distance < 0) {
-            clearInterval(countdown);
-            const expiredVal = "00";
-            document.getElementById("days").innerText = expiredVal;
-            document.getElementById("hours").innerText = expiredVal;
-            document.getElementById("minutes").innerText = expiredVal;
-            document.getElementById("seconds").innerText = expiredVal;
-            document.getElementById("event-time-info").innerText = "Acara Sedang Berlangsung";
-        }
-    }, 1000);
-</script>
-
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycby-9e0gUcjCjO1K8A2WG9Sp4Pc6tPnKvbLG-OxuI0oGQlvlBsB06LA2pQ8uZpUu4Hk7/exec'; // Masukkan URL Google Apps Script lu di sini bre
-
-    function updateGuestCount() {
-        if (scriptURL === '#') return;
-        const cacheBuster = new Date().getTime();
-        const script = document.createElement('script');
-        script.src = `${scriptURL}?callback=handleResponse&t=${cacheBuster}`;
-        script.onerror = function() {
-            console.error("Gagal memuat data dari Google Script. Cek URL Deployment kamu.");
-        };
-        document.body.appendChild(script);
-    }
-
-    function handleResponse(data) {
-        const countElement = document.getElementById('guestCount');
-        if (countElement && data && typeof data.count !== 'undefined') {
-            countElement.innerText = data.count;
-            console.log("Jumlah tamu berhasil diupdate secara LIVE:", data.count);
-        } else {
-            console.warn("Data diterima tapi formatnya tidak sesuai:", data);
-        }
-    }
-
-    window.addEventListener('DOMContentLoaded', updateGuestCount);
-setInterval(updateGuestCount, 1000); // tiap 1 detik
-
-</script>
-
 </body>
 </html>
