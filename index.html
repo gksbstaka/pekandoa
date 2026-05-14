@@ -106,51 +106,77 @@
 </head>
 <body class="bg-[#ffffff] font-sans text-[#4A4A4A]">
 
-  <section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
-    
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-black">
+
     <style>
-        :root { --overlay-start: rgba(178, 9, 255, 0.83); --overlay-end: rgba(33, 38, 255, 0.83); }
+        :root {
+            --overlay-start: rgba(178, 9, 255, 0.83);
+            --overlay-end: rgba(33, 38, 255, 0.83);
+        }
     </style>
 
+    <!-- VIDEO BG -->
     <div class="absolute inset-0 z-0">
-        <video autoplay muted loop playsinline class="w-full h-full object-cover grayscale opacity-95">
+
+        <video autoplay muted loop playsinline
+               class="w-full h-full object-cover grayscale opacity-95">
             <source src="assets/video/herovid.mp4" type="video/mp4">
         </video>
-        <div class="absolute inset-0 z-10" 
+
+        <!-- OVERLAY -->
+        <div class="absolute inset-0 z-10 pointer-events-none"
              style="background: linear-gradient(to bottom, var(--overlay-start), var(--overlay-end));">
         </div>
+
     </div>
 
+    <!-- CONTENT -->
     <div class="relative z-20 flex flex-col items-center text-center p-6 reveal">
-        
+
         <div class="mb-10 flex flex-col items-center">
-            <img src="assets/img/logo.svg" class="w-28 md:w-32 mx-auto mb-6 brightness-0 invert opacity-90" alt="Logo">
-        
+
+            <img src="assets/img/logo.svg"
+                 class="w-28 md:w-32 mx-auto mb-6 brightness-0 invert opacity-90"
+                 alt="Logo">
+
             <span class="ap-sub !text-white !mb-1 font-medium tracking-[0.3em] uppercase">
                 GKSBS Tanjungkarang
             </span>
-        
+
             <span class="text-white/60 font-medium italic !text-[14px] tracking-wide">
                 "Gereja yang Menjadi Berkat bagi Masyarakat"
             </span>
-        </div>
-        
-        <div class="mb-10">
-            <h1 class="text-ap-title text-white tracking-[0.1em] !text-[24px]">
-                PEKAN DOA<span class="font-sans font-semibold text-white/100"> MENUJU PENTAKOSTA</span>
-            </h1>
-            <br class="hidden md:block"> 
-             <h1 class="text-ap-title text-white !text-[16px]">
-                <span class="font-sans font-medium text-white/80">19 - 21 Mei 2026</span>
-            </h1>
+
         </div>
 
-            <a href="main.html" 
-               class="px-12 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-ap-body font-semibold tracking-widest transition-all duration-500 hover:bg-ap-blue hover:border-ap-blue hover:shadow-[0_0_20px_rgba(0,113,227,0.4)] active:scale-95">
-                SELENGKAPNYA
-            </a>
+        <div class="mb-10">
+
+            <h1 class="text-ap-title text-white tracking-[0.1em] !text-[24px]">
+                PEKAN DOA
+                <span class="font-sans font-semibold text-white">
+                    MENUJU PENTAKOSTA
+                </span>
+            </h1>
+
+            <br class="hidden md:block">
+
+            <h1 class="text-ap-title text-white !text-[16px]">
+                <span class="font-sans font-medium text-white/80">
+                    19 - 21 Mei 2026
+                </span>
+            </h1>
+
         </div>
+
+        <a href="main.html"
+           class="px-12 py-4 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white text-ap-body font-semibold tracking-widest transition-all duration-500 hover:bg-ap-blue hover:border-ap-blue hover:shadow-[0_0_20px_rgba(0,113,227,0.4)] active:scale-95">
+
+            SELENGKAPNYA
+
+        </a>
+
     </div>
+
 </section>
-</body>
-</html>
+
+</body></html>
